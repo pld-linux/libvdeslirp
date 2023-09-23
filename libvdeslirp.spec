@@ -1,18 +1,13 @@
-#
-# Conditional build:
-%bcond_without	apidocs		# do not build and package API docs
-%bcond_without	static_libs	# don't build static libraries
-#
 Summary:	libslirp for Linux made easy
 Summary(pl.UTF-8):	Łatwiejsze obudowanie libslirp dla Linuksa
 Name:		libvdeslirp
-Version:	0.1.0
+Version:	0.1.1
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-#Source0Download: https://github.com/virtualsquare/libvdeslirp/releases
+#Source0Download: https://github.com/virtualsquare/libvdeslirp/tags
 Source0:	https://github.com/virtualsquare/libvdeslirp/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	7b9bcdb74e4872e8f35dd49a6419a2c8
+# Source0-md5:	ae7cfe92910a3eabc57b9c69e5e2f8d4
 URL:		https://github.com/virtualsquare/libvdeslirp
 BuildRequires:	cmake >= 3.13
 BuildRequires:	libslirp-devel >= 4
