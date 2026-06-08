@@ -1,15 +1,15 @@
 Summary:	libslirp for Linux made easy
 Summary(pl.UTF-8):	Łatwiejsze obudowanie libslirp dla Linuksa
 Name:		libvdeslirp
-Version:	0.1.1
+Version:	0.1.2
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://github.com/virtualsquare/libvdeslirp/tags
 Source0:	https://github.com/virtualsquare/libvdeslirp/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	ae7cfe92910a3eabc57b9c69e5e2f8d4
+# Source0-md5:	c12911c37f46de6e9dcea9587ac4be6c
 URL:		https://github.com/virtualsquare/libvdeslirp
-BuildRequires:	cmake >= 3.13
+BuildRequires:	cmake >= 3.25
 BuildRequires:	libslirp-devel >= 4
 BuildRequires:	vde2-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -44,6 +44,7 @@ Summary:	Header files for libvdeslirp library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libvdeslirp
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	glib2-devel >= 2.0
 Requires:	libslirp-devel >= 4
 
 %description devel
@@ -56,14 +57,12 @@ Pliki nagłówkowe biblioteki libvdeslirp.
 %setup -q
 
 %build
-install -d build
-cd build
-%cmake .. \
+%cmake -B build \
 	-DCMAKE_INSTALL_BINDIR=bin \
 	-DCMAKE_INSTALL_INCLUDEDIR=include \
 	-DCMAKE_INSTALL_LIBDIR=%{_lib}
 
-%{__make}
+%{__make} -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -80,12 +79,12 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README.md
-%attr(755,root,root) %{_libdir}/libvdeslirp.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libvdeslirp.so.0
+%{_libdir}/libvdeslirp.so.*.*.*
+%ghost %{_libdir}/libvdeslirp.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libvdeslirp.so
+%{_libdir}/libvdeslirp.so
 %{_includedir}/slirp/libvdeslirp.h
 %{_pkgconfigdir}/vdeslirp.pc
 %{_mandir}/man3/libvdeslirp*.3*
