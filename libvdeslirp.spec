@@ -10,8 +10,9 @@ Source0:	https://github.com/virtualsquare/libvdeslirp/archive/%{version}/%{name}
 # Source0-md5:	8504bcaa5d27046e784384254d38619d
 URL:		https://github.com/virtualsquare/libvdeslirp
 BuildRequires:	cmake >= 3.25
+# libslirp only dependency, used in MakeLists.txt only for linking
+BuildRequires:	glib2-devel >= 1:2.0
 BuildRequires:	libslirp-devel >= 4.9
-BuildRequires:	vde2-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -43,9 +44,8 @@ interfejsie.
 Summary:	Header files for libvdeslirp library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libvdeslirp
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 2.0
-Requires:	libslirp-devel >= 4
+Requires:	%{name}%{?_isa} = %{version}-%{release}
+Requires:	libslirp-devel%{?_isa} >= 4
 
 %description devel
 Header files for libvdeslirp library.
